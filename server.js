@@ -6,10 +6,10 @@ const { MessagingResponse } = require('twilio').twiml;
 
 const index = express();
 
-const telegramBotToken = process.env.TELEGRAM_BOT_TOKEN;
-const chatId = process.env.TELEGRAM_CHAT_ID;
-const twilioAccountSid = process.env.TWILIO_ACCOUNT_SID;
-const twilioAuthToken = process.env.TWILIO_AUTH_TOKEN;
+const telegramBotToken = '6758603953:AAHDIGMJew8CkyioteQgHdr9VHf_s19DICw';
+const chatId = '-4119571699';
+const twilioAccountSid = 'AC212f896398d9776bfabd71ada09d2912';
+const twilioAuthToken = '5a48cd9523db9a30f7864f4c5deca28c';
 
 const bot = new Telegraf(telegramBotToken);
 
