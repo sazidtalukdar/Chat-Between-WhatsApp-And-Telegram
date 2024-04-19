@@ -1,4 +1,4 @@
-require('dotenv').config();
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const { Telegraf } = require('telegraf');
@@ -34,7 +34,7 @@ function forwardMediaToWhatsapp(mediaUrl) {
     twilioClient.messages.create({
         from: `whatsapp:${twilioPhoneNumber}`,
         to: 'whatsapp:+8801709526615',
-        mediaUrl: [mediaUrl],
+        mediaUrl: mediaUrl,
     }).then(message => console.log(`WhatsApp media message sent: ${message.sid}`))
         .catch(error => console.error(`Error sending WhatsApp media message: ${error.message}`));
 }
@@ -45,12 +45,15 @@ index.post('/webhook', (req, res) => {
     console.log('Incoming Twilio request:', req.body);
 
     const incomingMsg = req.body.Body.toLowerCase();
-    const mediaUrl = req.body.MediaUrl0; 
+    const mediaUrl = req.body.MediaUrl;
+
     forwardToTelegram(incomingMsg);
 
     if (mediaUrl) {
+        // Handle media messages
         forwardMediaToWhatsapp(mediaUrl);
     } else {
+        // Handle text messages
         forwardToWhatsapp(incomingMsg);
     }
 
@@ -62,12 +65,13 @@ index.post('/webhook', (req, res) => {
 bot.start((ctx) => ctx.reply('Welcome!'));
 bot.on('text', (ctx) => {
     const message = ctx.message.text;
+
     forwardToWhatsapp(message);
 });
 
 bot.launch();
 
-const port = process.env.PORT || 3000;
+const port = 5000;
 index.listen(port, () => {
     console.log(`Server running on port ${port}`);
-});
+})
