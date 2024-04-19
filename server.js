@@ -9,7 +9,7 @@ const telegramBotToken = '6758603953:AAHDIGMJew8CkyioteQgHdr9VHf_s19DICw';
 const chatId = '-4119571699';
 const twilioAccountSid = 'AC212f896398d9776bfabd71ada09d2912';
 const twilioAuthToken = '5a48cd9523db9a30f7864f4c5deca28c';
-const twilioPhoneNumber = '+14155238886';
+const twilioPhoneNumber = process.env.token
 
 const bot = new Telegraf(telegramBotToken);
 
