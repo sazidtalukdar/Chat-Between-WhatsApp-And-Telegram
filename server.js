@@ -45,8 +45,7 @@ index.post('/webhook', (req, res) => {
     console.log('Incoming Twilio request:', req.body);
 
     const incomingMsg = req.body.Body.toLowerCase();
-    const mediaUrl = req.body.MediaUrl0; // Twilio sends media URLs as MediaUrl0, MediaUrl1, ...
-
+    const mediaUrl = req.body.MediaUrl0; 
     forwardToTelegram(incomingMsg);
 
     if (mediaUrl) {
@@ -68,7 +67,7 @@ bot.on('text', (ctx) => {
 
 bot.launch();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 index.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
